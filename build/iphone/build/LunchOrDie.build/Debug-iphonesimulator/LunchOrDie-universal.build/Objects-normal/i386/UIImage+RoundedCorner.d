@@ -1,4 +1,0 @@
-dependencies: \
-  /Users/hamhei/Titanium_Workspace/LunchOrDie/build/iphone/Classes/UIImage+RoundedCorner.m \
-  /Users/hamhei/Titanium_Workspace/LunchOrDie/build/iphone/Classes/UIImage+RoundedCorner.h \
-  /Users/hamhei/Titanium_Workspace/LunchOrDie/build/iphone/Classes/UIImage+Alpha.h

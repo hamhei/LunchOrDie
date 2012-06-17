@@ -42,6 +42,14 @@ var rest = [
 		url: "",
 	},
 	{
+		name: "台湾点心 巧匠",
+		comment: "",
+		status: 0,
+		station: "",
+		latitude: "",
+		url: "",
+	},
+	{
 		name: "ラ・ボエム",
 		comment: "あと３０分です",
 		status: 1,
@@ -95,7 +103,7 @@ var row = Ti.UI.createTableViewRow({
 data.push(row);
 
 for (var i = 0; i < rest.length; i++) {
-	if(i == 2){
+	if(i == 3){
 		var row = Ti.UI.createTableViewRow({
 			height: 44,
 			width: '100%',
@@ -107,7 +115,7 @@ for (var i = 0; i < rest.length; i++) {
 			//layout: 'horizontal'
 		});
 		data.push(row);
-	} else if (i == 4){				
+	} else if (i == 5){				
 		var row = Ti.UI.createTableViewRow({
 			height: 44,
 			width: '100%',
