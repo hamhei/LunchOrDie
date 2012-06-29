@@ -3,6 +3,7 @@ Titanium.UI.setBackgroundColor('#FFF');
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 
+
 var PINK = '#FF4E54';
 var GREEN = "#00dd00";
 var RED = '#dd0000';
@@ -24,63 +25,46 @@ var statusList = [
 
 ];
 
-var rest = [
-	{
-		name: "バーガーマニア",
-		comment: "",
-		status: 0,
-		station: "",
-		latitude: "",
-		url: "",
-	},
-	{
-		name: "森カフェ",
-		comment: "",
-		status: 0,
-		station: "",
-		latitude: "",
-		url: "",
-	},
-	{
-		name: "台湾点心 巧匠",
-		comment: "",
-		status: 0,
-		station: "",
-		latitude: "",
-		url: "",
-	},
-	{
-		name: "ラ・ボエム",
-		comment: "あと３０分です",
-		status: 1,
-		station: "",
-		latitude: "",
-		url: "",
-	},
-	{
-		name: "麹屋",
-		comment: "満席です",
-		status: 1,
-		station: "",
-		latitude: "",
-		url: "",
-	},
-	{
-		name: "kiwi kitchen",
-		comment: "",
-		status: 2,
-		station: "",
-		latitude: "",
-		url: "",
-	},
+var shops = [];
+var shops = [
+  {
+    name: "千年茶館",
+    days: "23456",
+    time_open: 720,
+    time_close: 900,
+  },
+  {
+    name: "ラ・ボエム",
+    days: "0123456",
+    time_open: 60,
+    time_close: 840,
+  },
+
+  {
+    name: "鮨匠 岡部",
+    days: "12345",
+    time_open: 720,
+    time_close: 870,
+  },
+
+
 ];
 
 
+
+// 今の日時の取得
+  var today = new Date();
+//今日が何曜日か
+  var week = new Array("日", "月", "火", "水", "木", "金", "土");
+  var dayOfWeek = week[today.getDay()];
+  
+  
+  
 //
 // create base UI tab and root window
 //
 var win1 = Titanium.UI.createWindow({  
-    title:'Lunch or Die',
+    title:'Just A Lunch',
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
@@ -102,7 +86,7 @@ var row = Ti.UI.createTableViewRow({
 });
 data.push(row);
 
-for (var i = 0; i < rest.length; i++) {
+for (var i = 0; i < shops.length; i++) {
 	if(i == 3){
 		var row = Ti.UI.createTableViewRow({
 			height: 44,
