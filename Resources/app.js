@@ -123,6 +123,7 @@ for (var i = 0; i < shops.length; i++) {
 		text: rest[i].name,
 		left: '3%',
 		width: '45%',
+		height: 44,
 		font:{fontWeight:'bold', fontSize:16},
 		color: '#000000'
 	});
@@ -132,6 +133,7 @@ for (var i = 0; i < shops.length; i++) {
 		text: rest[i].comment,
 		left: '50%',//'2%',
 		width: '40%',
+		height: 44,
 		font:{fontWeight:'bold',fontSize:12},
 		color: RED
 	});
@@ -142,6 +144,7 @@ for (var i = 0; i < shops.length; i++) {
 		color: statusList[rest[i].status].color,
 		right: '0%',
 		width: '10%',
+		height: 44,
 		font:{fontWeight:'bold',fontSize:16},
 	});
 	row.add(statusLabel);
