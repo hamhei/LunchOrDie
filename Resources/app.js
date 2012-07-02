@@ -47,6 +47,7 @@ var shops = [
     time_open: 690,
     time_close: 960,
     category: "ハンバーガー",
+    url: "http://tabelog.com/tokyo/A1316/A131602/13047335/",
   },
   {
     name: "手打そば佶更",
@@ -229,6 +230,7 @@ for (var i = 0; i < shops.length; i++) {
 		height: 88,
 		width: '100%',
 		left: 0,
+		url: shops[i].url,
 		//layout: 'horizontal'
 	});
 	
@@ -291,6 +293,7 @@ var tableMenu = Ti.UI.createTableView({
 });
 
 tableMenu.addEventListener('click', function(e){
+	Ti.Platform.openURL(e.rowData.url);
 });
 win1.add(tableMenu);
 
