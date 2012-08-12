@@ -5,22 +5,26 @@ var tabGroup = Titanium.UI.createTabGroup();
 
 
 var PINK = '#FF4E54';
-var GREEN = "#00dd00";
-var RED = '#dd0000';
-var YELLOW = '#dddd00';
+var GREEN = "#00cc00";
+var RED = '#cc0000';
+var YELLOW = '#eedd00';
+var GRAY = '#cccccc';
 
 var statusList = [
 	{
 		status: "●",
-		color: GREEN
+		color: GREEN,
+		title: "Open Now^^"
 	},
 	{
 		status: "▲",
-		color: YELLOW
+		color: YELLOW,
+		title: "Attention!"
 	},
 	{
 		status: "×",
-		color: RED
+		color: RED,
+		title: "Closed."
 	},
 
 ];
@@ -102,7 +106,7 @@ var shops = [
   },
 
   {
-    name: "デニッシュカフェ 白金台店",
+    name: "デニッシュカフェ",
     days: "0123456",
     time_open: 660,
     time_close: 900,
@@ -124,14 +128,6 @@ var shops = [
 	url: "http://r.tabelog.com/tokyo/A1316/A131602/13109917/",
   },
   {
-    name: "CAFE JOY",
-    days: "12345",
-    time_open: 675,
-    time_close: 1200,
-    category: "カフェ、欧風カレー",
-    url: "http://r.tabelog.com/tokyo/A1316/A131602/13053385/",
-  },
-  {
     name: "韓国家庭料理 はな 白金店",
     days: "123456",
     time_open: 690,
@@ -139,8 +135,6 @@ var shops = [
     category: "韓国料理",
     url: "http://r.tabelog.com/tokyo/A1316/A131602/13037615/",
   },
-
-
 
 ];
 
@@ -181,7 +175,6 @@ var win1 = Titanium.UI.createWindow({
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
-    icon:'KS_nav_views.png',
     title:'Tab 1',
     window:win1
 });
@@ -192,100 +185,106 @@ function dataset(){
 	today = new Date();
 	time_now = (today.getHours())*60 + today.getMinutes();
 	
-	var row = Ti.UI.createTableViewRow({
-		height: 44,
-		width: '100%',
-		left: 0,
-		title: "Open Now!",
-		textAlign: "center",
-		color: "#fffffff",
-		backgroundColor: statusList[0].color
-	});
-	data.push(row);
-	
-	for (var i = 0; i < shops.length; i++) {
-		/*if(i == 3){
-			var row = Ti.UI.createTableViewRow({
-				height: 44,
-				width: '100%',
-				left: 0,
-				title: "Attention!",
-				textAlign: "center",
-				color: "#fffffff",
-				backgroundColor: statusList[1].color
-				//layout: 'horizontal'
-			});
-			data.push(row);
-		} else if (i == 5){				
-			var row = Ti.UI.createTableViewRow({
-				height: 44,
-				width: '100%',
-				left: 0,
-				title: "Closed...",
-				textAlign: "center",
-				color: "#fffffff",
-				backgroundColor: statusList[2].color
-				//layout: 'horizontal'
-			});
-			data.push(row);
-		}*/
+	for(var j = 0; j < statusList.length; j++) {
+		
+		/*
 		var row = Ti.UI.createTableViewRow({
-			height: 88,
+			height: 44,
 			width: '100%',
 			left: 0,
-			url: shops[i].url,
+			title: statusList[j].title,
+			textAlign: "center",
+			color: "#fffffff",
+			backgroundColor: statusList[j].color
 			//layout: 'horizontal'
 		});
-		
-		var nameLabel = Ti.UI.createLabel({
-			text: shops[i].name,
-			left: '3%',
-			top: '25%',
-			width: '50%',
-			height: 44,
-			font:{fontWeight:'bold', fontSize:16},
-			color: '#000000'
-		});
-		
-		row.add(nameLabel);
-		var categoryLabel = Ti.UI.createLabel({
-			text: shops[i].category,
-			left: '3%',
-			top: '3%',
-			width: '50%',
-			height: 44,
-			font:{fontWeight:'bold',fontSize:12},
-			color: '#999999'
-		});
-		row.add(categoryLabel);
-
-		var open_status = checkOpen(shops[i]);
-		
-		if(open_status != 2){
-			var lost_hour = parseInt((shops[i].time_close - time_now)/60); 
-			var lost_minit = (shops[i].time_close - time_now)%60; 
-			var commentLabel = Ti.UI.createLabel({
-				text: "あと" + lost_hour + "時間" + lost_minit + "分",
-				left: '50%',//'2%',
-				width: '30%',
-				height: 44,
-				font:{fontWeight:'bold',fontSize:12},
-				color: '#999999'
-			});
-			row.add(commentLabel);
-		}
-		
-		var statusLabel = Ti.UI.createLabel({
-			text: statusList[open_status].status,
-			color: statusList[open_status].color,
-			right: '0%',
-			width: '10%',
-			height: 44,
-			font:{fontWeight:'bold',fontSize:16},
-		});
-		row.add(statusLabel);
-	
 		data.push(row);
+		*/
+
+		for (var i = 0; i < shops.length; i++) {
+			var open_status = checkOpen(shops[i]);		
+	
+			if(open_status == j) {
+				var row = Ti.UI.createTableViewRow({
+					height: 44,
+					width: '100%',
+					left: 0,
+					url: shops[i].url,
+					backgroundColor: statusList[j].color,
+					borderColor: "#fff",
+					borderRadius: 2,
+					//layout: 'horizontal'
+				});
+				
+				var nameLabel = Ti.UI.createLabel({
+					text: shops[i].name,
+					left: '3%',
+					top: '0%',
+					width: '55%',
+					height: 44,
+					font:{fontWeight:'bold', fontSize:14},
+					color: '#fff'
+				});
+				row.add(nameLabel);
+				
+				/*
+				var categoryLabel = Ti.UI.createLabel({
+					text: shops[i].category,
+					left: '3%',
+					top: '3%',
+					width: '50%',
+					height: 44,
+					font:{fontWeight:'bold',fontSize:12},
+					color: '#999999'
+				});
+				row.add(categoryLabel);
+				*/
+				
+				if(open_status != 2){
+					//var lost_hour = parseInt((shops[i].time_close - time_now)/60); 
+					var lost_minit = (shops[i].time_close - time_now); 
+					var commentLabel = Ti.UI.createLabel({
+						text: "あと" + lost_minit + "分",
+						left: '60%',//'2%',
+						width: '32%',
+						height: 44,
+						font:{fontWeight:'bold', fontSize:12},
+						color: '#fff'
+					});
+					row.add(commentLabel);
+				} else if(open_status == 2 && shops[i].days.indexOf(today.getDay())) {
+					//var lost_hour = parseInt((shops[i].time_close - time_now)/60); 
+					var lost_minit = (shops[i].time_open - time_now);
+					if(lost_minit < 0){
+						lost_minit = lost_minit + 2400;
+					} 
+					if(lost_minit < 60) {
+						var commentLabel = Ti.UI.createLabel({
+							text: "あと" + lost_minit + "分",
+							left: '60%',//'2%',
+							width: '32%',
+							height: 44,
+							font:{fontWeight:'bold', fontSize:12},
+							color: '#fff'
+						});
+						row.add(commentLabel);
+					}
+				}
+				
+				var statusLabel = Ti.UI.createLabel({
+					text: statusList[open_status].status,
+					color: '#fff',//statusList[open_status].color,
+					right: '3%',
+					width: '5%',
+					top: 0,
+					height: 44,
+					font:{fontWeight:'bold',fontSize:16},
+				});
+				row.add(statusLabel);
+			
+				data.push(row);
+			}
+		}
 	}
 	
 	return data;
@@ -303,7 +302,9 @@ var tableMenu = Ti.UI.createTableView({
 });
 
 tableMenu.addEventListener('click', function(e){
-	Ti.Platform.openURL(e.rowData.url);
+	if(!isAndroid()){
+		Ti.Platform.openURL(e.rowData.url);
+	}
 });
 win1.add(tableMenu);
 
@@ -312,10 +313,21 @@ var interval = setInterval(function(){
 	tableMenu.data = dataset();
 }, 60000);
 
+function isAndroid(){
+	if(Ti.Platform.osname == 'android') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 //
 //  add tabs
 //
-win1.hideTabBar();
+if(!isAndroid()) {
+	win1.hideTabBar();
+	win1.hideNavBar();
+}
 tabGroup.addTab(tab1);  
 
 
